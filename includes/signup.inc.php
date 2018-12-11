@@ -1,5 +1,18 @@
 <?php
 
+$host = "localhost";
+$user_name = "root";
+$pass_word = "";
+$db = "Marktplaats";
+
+// CREATE CONNECTION
+$conn = mysqli_connect($host, $user_name, $pass_word, $db);
+
+    // CHECK CONNECTION
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
 if (isset($_POST['signupsubmit'])) {
 
     $username = $_POST['uname'];
@@ -70,13 +83,15 @@ if (isset($_POST['signupsubmit'])) {
                         mysqli_stmt_bind_param($stmt, "sss", $username, $email, $hashedPwd);
                         mysqli_stmt_execute($stmt);
                         
-                        //$userid = mysqli_insert_id($conn);
-                        //
+                        $userid = mysqli_insert_id($conn);
+                        
                         //$sql2 = "INSERT INTO Users_Usergroup (UserID, GroupID) VALUES (" . $userid . ", " . $_POST['groupname'] . ")";
-                        //
+                        
                         //mysqli_query($conn, $sql2);
+                        
+                        //IF BLOGGER SENT TO LOGINSIGNUP, IF VISITOR SENT TO (YET TO BUILT) WELCOME PAGE OR SOMETHING
                                                 
-                        header("Location: account.php?signup=success");
+                        header("Location: ../account.php?signup=success");
                         exit();
                     }
                 }
