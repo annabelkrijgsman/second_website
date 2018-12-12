@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $host = "localhost";
 $user_name = "root";
@@ -12,7 +13,8 @@ $conn = mysqli_connect($host, $user_name, $pass_word, $db);
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
-    
+
+//LOGIN    
 if (isset($_POST['loginsubmit'])) {
     
     $email = $_POST['email'];
@@ -40,8 +42,7 @@ if (isset($_POST['loginsubmit'])) {
                     exit();                        
                 }
                 elseif ($pwdcheck == true) {
-                    session_start();
-                    $_SESSION['userID'] = $row['ID'];
+                    $_SESSION['userID'] = $row['userID'];
                     $_SESSION['userUsername'] = $row['Username'];
                     //$_SESSION['userGroup'] = $row['GroupID'];
                     header("Location: ../account.php?login=succes");
