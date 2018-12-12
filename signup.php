@@ -4,7 +4,35 @@
         
         <article>
             
-            <form method="post" id="contactblock" action="includes/signup.inc.php">
+            <?php
+            
+                //SIGN UP ERRORS
+                if (isset($_GET['error'])) {
+                    if ($_GET['error'] == "emptyfields") {
+                        echo '<p style="color:red">Please fill in all fields</p>';
+                    }
+                    elseif ($_GET["error"] == "invalidmailuname") {
+                        echo '<p style="color:red">Invalid username and email</p>';
+                    }
+                    elseif ($_GET["error"] == "invalidmail") {
+                        echo '<p style="color:red">Invalid email</p>';
+                    }
+                    elseif ($_GET["error"] == "invaliduname") {
+                        echo '<p style="color:red">Invalid username</p>';
+                    }
+                    elseif ($_GET["error"] == "passwordcheck") {
+                        echo '<p style="color:red">Your passwords don\'t match</p>';
+                    }
+                    elseif ($_GET["error"] == "usertaken") {
+                        echo '<p style="color:red">Username is already taken</p>';
+                    }
+                }
+                    
+            ?>
+            
+            <!--SIGN UP FORM-->
+            <h2 align="center">Sign Up</h2>
+            <form method="post" id="form" action="includes/signup.inc.php">
                 <label for="uname">Username</label><br/>
                 <input type="text" id="uname" class="textfield" name="uname" placeholder="Username.."><br/>
                 <label for="email">Email</label><br/>
@@ -20,4 +48,4 @@
         
 <?php
     include 'includes/footer.inc.php';
-?>>
+?>
