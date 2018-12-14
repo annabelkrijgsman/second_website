@@ -27,16 +27,18 @@ if (!isset($_SESSION['userID'])) {
                 echo '</tr>';
                 echo '</thead>';
                     
-                $sql = "SELECT * FROM Advert ORDER BY date DESC" or die();
+                $sql = "SELECT advertID FROM Advert WHERE UserID = " . $_SESSION["userID"] . " ORDER BY date DESC" or die();
                     
                 $result = mysqli_query($conn, $sql);
                 foreach ($result as $row) {
+                    $advert = new Advert($row["advertID"]);
+                    
                     echo '<tbody>';
                     echo '<tr>';
-                    echo '<td>' . $row["Title"] . '</td>';
-                    echo '<td class="advert">' . $row["Advert"] . '</td>';
-                    echo '<td>&euro; ' . $row["Price"] . '</td>';
-                    echo "<td><a class='button' href='editadvert.php?id=" . $row["advertID"] . "'>Edit</a>  <a class='button' href='editadvert.php?id=" . $row["advertID"] . "&delete=" . $row["advertID"] . "'>Delete</a></td>";
+                    echo '<td>' . $advert->title . '</td>';
+                    echo '<td class="advert">' . $advert->advert . '</td>';
+                    echo '<td>&euro; ' . $advert->price . '</td>';
+                    echo "<td><a class='button' href='editadvert.php?id=" . $advert->id . "'>Edit</a>  <a class='button' href='editadvert.php?id=" . $advert->id . "&delete=" . $advert->id . "'>Delete</a></td>";
                     echo '</tr>';
                     echo '</tbody>';                        
                 }
@@ -61,7 +63,7 @@ if (!isset($_SESSION['userID'])) {
                     <input type="text" class="textfield" name="title" placeholder="Your advert title.." value="<?php echo $title;?>">
                     <span class="error"><b>* </b> <?php echo $titleErr;?></span><br/><br/>
                     <label for="article">Advert</label><br/>
-                    <textarea class="textfield" name="advert" rows="10" cols="40" placeholder="Write your advert.."><?php echo $advert;?></textarea>
+                    <textarea class="textfield" name="advert" rows="10" cols="40" placeholder="Write your advert.."><?php echo $advertentie;?></textarea>
                     <span class="error"><b>* </b> <?php echo $advertErr;?></span><br/><br/>
                     <label for="price">Price</label><br/>
                     <input type="text" class="textfield" name="price" placeholder="Price.." value="<?php echo $price;?>">
