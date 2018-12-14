@@ -13,7 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST' && !empty($_POST["title"]) && !empty($_
 	$price = $_POST["price"];
 	$date = date("d-m-Y, H:i");
 	
-	$sql = "INSERT INTO Advert (Title, Advert, Price, Date) VALUES ('$title', '$advert', '$price', '$date')";
+	$sql = "INSERT INTO Advert (Title, Advert, Price, Date, UserID) VALUES ('$title', '$advert', '$price', '$date', " . $_SESSION["userID"] . ")";
+	//echo $sql; die();
 	mysqli_query($conn, $sql);
 	
 	//CATEGORIES INTO DATABASE
