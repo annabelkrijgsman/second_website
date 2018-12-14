@@ -13,6 +13,7 @@ session_start();
         
         <?php
             require 'connection.inc.php';
+            include 'classes/advert.class.php';
         ?>
         
         <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
@@ -22,7 +23,11 @@ session_start();
     <body>
         
         <header>
-            
+            <div class="logo">
+                <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+                <h1 align="center">CYBER SALE</h1>
+            </div>
+            <br/>            
             <div class="navigation">
                     <ul class="nav">
                         <li><a href="index.php">Home</a></li>
