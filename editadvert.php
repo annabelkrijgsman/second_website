@@ -13,7 +13,7 @@ if (!isset($_SESSION['userID'])) {
             <div class="contactcolumn">
                 <!--EDIT ADVERT-->
                 <h2 align="center">Edit Advert</h2>
-                <form method="post" id="contactblock" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                <form method="post" id="contactblock">
                 
                     <?php
                         
@@ -26,8 +26,8 @@ if (!isset($_SESSION['userID'])) {
                         if ($editid > 0) {
                             $sql = "SELECT * FROM Advert WHERE advertID = " . $editid;
                             $result = mysqli_query($conn, $sql);
-                            //var_dump($editadvert); die();
-                            $editadvert = mysqli_fetch_assoc($result); // NOTICE mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean 
+                            //var_dump($editid); die(); $editid is whatever it's supposed to be
+                            $editadvert = mysqli_fetch_assoc($result); 
                             
                             $title = $editadvert["Title"];
                             $advert = $editadvert["Advert"];
