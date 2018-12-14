@@ -1,6 +1,10 @@
 <?php
 
-//EDITED ADVERT IN DATABASE
+if (isset($_GET["id"])) {
+	$editid = $_GET["id"];
+}
+
+//DELETE ADVERT
 if(isset($_GET["delete"])) {
 	$del = $_GET["delete"] * 1;
 	if ($del > 0) {
@@ -10,6 +14,7 @@ if(isset($_GET["delete"])) {
 	}
 }
 
+//EDITED ADVERT IN DATABASE
 $title = "";
 $advert = "";
 $price = "";
@@ -21,9 +26,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST' && !empty($_POST["title"]) && !empty($_
 	$advert = $_POST["advert"];
 	$price = $_POST["price"];
 	$date = date("d-m-Y, H:i");
-
-	$sql = "UPDATE Advert SET Title = '$title', Advert = '$advert', Price = '$price' WHERE advertID = " . $editid; //notice
+	
+	$sql = "UPDATE Advert SET Title = '$title', Advert = '$advert', Price = '$price' WHERE advertID = " . $editid;
 	mysqli_query($conn, $sql);
+	//var_dump($editid); die; //$editid is empty
 	
 	echo "<script>document.location.href='account.php?editadindb=yes&id=$editid';</script>"; die(); //notice
 }
