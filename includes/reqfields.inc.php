@@ -2,7 +2,7 @@
 
 //REQUIRED FIELDS
 $titleErr = $advertErr = $priceErr = "";
-$title = $advert = $price = "";
+$title = $advertentie = $price = "";
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (empty($_POST["title"])) {
